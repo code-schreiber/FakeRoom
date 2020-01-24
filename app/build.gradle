@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+repositories {
+    google()
+    jcenter()
+}
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 29
+        targetSdkVersion 29
+        versionCode 1
+        versionName "0.1"
+        testInstrumentationRunner "com.toolslab.fakeroom.test.TestRunner"
+    }
+}
+
+dependencies {
+    def kotlin = "1.3.60"
+    def rxKotlin = "2.4.0"
+    def room = "2.2.3"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin"
+
+    implementation "androidx.room:room-runtime:$room"
+    kapt "androidx.room:room-compiler:$room"
+    implementation "androidx.room:room-rxjava2:$room"
+    implementation "io.reactivex.rxjava2:rxkotlin:" + rxKotlin
+
+    testImplementation "androidx.room:room-testing:$room"
+    testImplementation 'junit:junit:4.12'
+    testImplementation "io.mockk:mockk:1.9.3.kotlin12"
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "androidx.room:room-testing:$room"
+}
